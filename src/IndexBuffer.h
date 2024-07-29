@@ -1,6 +1,8 @@
 //
 // Created by 111 on 2024/7/25.
 //
+#ifndef INDEXBUFFER_H
+#define INDEXBUFFER_H
 class IndexBuffer {
 private:
     unsigned int m_RendererId;
@@ -12,5 +14,8 @@ public:
 
     void Bind() const;
     void UnBind() const;
-
+    unsigned int GetCount() const{
+        return m_count;
+    }
 };
+#endif // INDEXBUFFER_H

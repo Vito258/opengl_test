@@ -163,6 +163,9 @@ int main() {
         vb.UnBind();
         ib.UnBind();
 
+        //创建自定义渲染器的实例
+        Renderer renderer;
+
         float r = 0.5f;
         float increment = 0.05f;
         /* Loop until the user closes the window */
@@ -173,18 +176,8 @@ int main() {
             shader.Bind();
             shader.SetUniform4f("u_Color", r, 0.3f, 0.8f, 1.0f);
 
-            //在此绑定顶点数组,发现只绑定顶点数组对象和和索引缓冲区，之前的代码注掉，程序依旧可以运行
-            GlCall(va.Bind());
-            //最后绑定到索引缓冲区
-            GlCall(ib.Bind());
-
-            //调用 drawcall 方法绘制
-            /* 没有索引缓冲区时可以使用这个方法 */
-            //glDrawArrays(GL_TRIANGLES,0,6);
-
-            /* 有索引缓冲区时可以使用这个方法 */
-            GlCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
-
+            // 渲染器绘制
+            renderer.Draw(va,ib,shader);
 
             /* Swap front and back buffers */
             GlCall(glfwSwapBuffers(window));

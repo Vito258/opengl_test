@@ -1,6 +1,8 @@
 //
 // Created by 111 on 2024/7/25.
 //
+#ifndef VERTEXBUFFERLAYOUT_H
+#define VERTEXBUFFERLAYOUT_H
 #include <vector>
 #include "GL/glew.h"
 #include "Renderer.h"
@@ -69,4 +71,4 @@ public:
 
     inline unsigned int GetStride() const { return m_Stride; }
 };
-
+#endif // VERTEXBUFFERLAYOUT_H

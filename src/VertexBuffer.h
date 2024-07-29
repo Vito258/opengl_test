@@ -1,7 +1,9 @@
-#pragma once
 //
 // Created by 111 on 2024/7/25.
 //
+
+#ifndef VERTEXBUFFER_H
+#define VERTEXBUFFER_H
 class VertexBuffer {
 private:
     unsigned int m_RendererId{};
@@ -13,3 +15,4 @@ public:
     void UnBind() const;
 
 };
+#endif // VERTEXBUFFER_H
