@@ -30,3 +30,7 @@ void Renderer::Draw(const VertexArray &va, const IndexBuffer &ib, const Shader &
     /* 有索引缓冲区时可以使用这个方法 */
     GlCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
+
+void Renderer::Clear() const {
+    GlCall(glClear(GL_COLOR_BUFFER_BIT));
+}

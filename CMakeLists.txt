@@ -34,7 +34,11 @@ add_executable(openGl_test src/main.cpp
         src/VertexBufferLayout.cpp
         src/VertexBufferLayout.h
         src/Shader.cpp
-        src/Shader.h)
+        src/Shader.h
+        src/vendor/stb_image/stb_image.h
+        src/vendor/stb_image/stb_image.cpp
+        src/Texture.cpp
+        src/Texture.h)
 
 # 链接 GLFW库
 target_link_libraries(openGl_test

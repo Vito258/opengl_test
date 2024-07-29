@@ -97,6 +97,30 @@ build CMakeFiles/openGl_test.dir/src/VertexBufferLayout.cpp.obj: CXX_COMPILER__o
   OBJECT_DIR = CMakeFiles\openGl_test.dir
   OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
 
+build CMakeFiles/openGl_test.dir/src/Shader.cpp.obj: CXX_COMPILER__openGl_test_unscanned_Debug D$:/C++/project/opengl_test/src/Shader.cpp || cmake_object_order_depends_target_openGl_test
+  DEFINES = -DGLEW_STATIC
+  DEP_FILE = CMakeFiles\openGl_test.dir\src\Shader.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  OBJECT_DIR = CMakeFiles\openGl_test.dir
+  OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
+
+build CMakeFiles/openGl_test.dir/src/vendor/stb_image/stb_image.cpp.obj: CXX_COMPILER__openGl_test_unscanned_Debug D$:/C++/project/opengl_test/src/vendor/stb_image/stb_image.cpp || cmake_object_order_depends_target_openGl_test
+  DEFINES = -DGLEW_STATIC
+  DEP_FILE = CMakeFiles\openGl_test.dir\src\vendor\stb_image\stb_image.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  OBJECT_DIR = CMakeFiles\openGl_test.dir
+  OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src\vendor\stb_image
+
+build CMakeFiles/openGl_test.dir/src/Texture.cpp.obj: CXX_COMPILER__openGl_test_unscanned_Debug D$:/C++/project/opengl_test/src/Texture.cpp || cmake_object_order_depends_target_openGl_test
+  DEFINES = -DGLEW_STATIC
+  DEP_FILE = CMakeFiles\openGl_test.dir\src\Texture.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  OBJECT_DIR = CMakeFiles\openGl_test.dir
+  OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target openGl_test
@@ -105,7 +129,7 @@ build CMakeFiles/openGl_test.dir/src/VertexBufferLayout.cpp.obj: CXX_COMPILER__o
 #############################################
 # Link the executable openGl_test.exe
 
-build openGl_test.exe: CXX_EXECUTABLE_LINKER__openGl_test_Debug CMakeFiles/openGl_test.dir/src/main.cpp.obj CMakeFiles/openGl_test.dir/src/Renderer.cpp.obj CMakeFiles/openGl_test.dir/src/VertexBuffer.cpp.obj CMakeFiles/openGl_test.dir/src/IndexBuffer.cpp.obj CMakeFiles/openGl_test.dir/src/VertexArray.cpp.obj CMakeFiles/openGl_test.dir/src/VertexBufferLayout.cpp.obj | D$:/C++/project/opengl_test/Dependencies/GLEW/lib/Release/x64/glew32s.lib
+build openGl_test.exe: CXX_EXECUTABLE_LINKER__openGl_test_Debug CMakeFiles/openGl_test.dir/src/main.cpp.obj CMakeFiles/openGl_test.dir/src/Renderer.cpp.obj CMakeFiles/openGl_test.dir/src/VertexBuffer.cpp.obj CMakeFiles/openGl_test.dir/src/IndexBuffer.cpp.obj CMakeFiles/openGl_test.dir/src/VertexArray.cpp.obj CMakeFiles/openGl_test.dir/src/VertexBufferLayout.cpp.obj CMakeFiles/openGl_test.dir/src/Shader.cpp.obj CMakeFiles/openGl_test.dir/src/vendor/stb_image/stb_image.cpp.obj CMakeFiles/openGl_test.dir/src/Texture.cpp.obj | D$:/C++/project/opengl_test/Dependencies/GLEW/lib/Release/x64/glew32s.lib
   FLAGS = -g
   LINK_LIBRARIES = D:/C++/project/opengl_test/Dependencies/GLEW/lib/Release/x64/glew32s.lib  -lopengl32  -lglu32  -lglfw3  -lkernel32  -luser32  -lgdi32  -lshell32  -lole32  -luuid  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   LINK_PATH = -LD:/C++/project/opengl_test/Dependencies/GLFW/lib-mingw-w64

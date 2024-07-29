@@ -1,32 +1,9 @@
 #include <iostream>
-#include <GL/glew.h>
+#include "GL/glew.h"
 #include "GLFW/glfw3.h"
 #include "string"
 #include <sstream>
 #include <fstream>
-
-//断言,如果函数返回false ,在代码中插入断点并中断调试器
-#define ASSERT(expr) do { if(!(expr)) __builtin_trap(); } while(0)
-#define GlCall(expr) GlClearError();\
-expr;\
-ASSERT(GlLogCall(#expr,__FILE__,__LINE__))
-//使用glGetError 排除错误
-/* 清除Error 的方法 */
-static void GlClearError(){
-    while(glGetError() != GL_NO_ERROR){
-        std::cout<<"there is a gl_error"<<std::endl;
-    };
-}
-
-/* 打印Error 的方法 */
-static bool GlLogCall(const char* function, const char* file, int line){
-    while(GLenum error = glGetError())
-    {
-      std::cout<<"[OPENGL ERROR]:"<<error<<" function:"<<function<< " file:"<<file<<" \n Line: "<< line <<std::endl;
-      return false;
-    }
-    return true;
-}
 
 struct ShaderProgramSource{
     std::string vertex_source;
@@ -113,17 +90,6 @@ static unsigned int CreateShader(const std::string& vertexShader, const std::str
 //        return -1;
 //
 //
-//    // 设置期望的OPENGL 版本
-//    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,3);
-//    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR,3);
-//
-//    //设置核心配置文件
-//    //这样设置会报错，提示1282 既没有顶点数组对象，需要自己显式设置
-//    glfwWindowHint(GLFW_OPENGL_PROFILE,GLFW_OPENGL_CORE_PROFILE);
-//
-//    //设置兼容配置文件
-//    //这样的话系统会默认设置一个顶点数组对象，它被绑定并供我们使用
-////    glfwWindowHint(GLFW_OPENGL_PROFILE,GLFW_OPENGL_COMPAT_PROFILE);
 //
 //    /* Create a windowed mode window and its OpenGL context */
 //    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
@@ -136,9 +102,6 @@ static unsigned int CreateShader(const std::string& vertexShader, const std::str
 //    /* Make the window's context current */
 //    //用于得到一个渲染openGL的上下文
 //    glfwMakeContextCurrent(window);
-//
-//    //同步v-sync 或者时主频刷新率
-//    glfwSwapInterval(1);
 //
 //    //改为使用GLEW
 //    GLenum err = glewInit();
@@ -153,6 +116,7 @@ static unsigned int CreateShader(const std::string& vertexShader, const std::str
 //            -0.5f,-0.5f,
 //            0.5f,-0.5f,
 //            0.5f,0.5f,
+//
 //            -0.5f,0.5f
 //    };
 //
@@ -160,31 +124,23 @@ static unsigned int CreateShader(const std::string& vertexShader, const std::str
 //            0,1,2,
 //            2,3,0
 //    };
-//
-//    //显式创建一个顶点数组
-//    //创建一个顶点数组id，并将其保存
-//    unsigned int vao;
-//    GlCall(glGenVertexArrays(1,&vao));
-//    GlCall(glBindVertexArray(vao));
-//
 //    unsigned int buffer;
 //    /* 生成一个缓冲区，并定义一个id */
 //    glGenBuffers(1,&buffer);
 //    /* 绑定这个缓冲区 */
 //    glBindBuffer(GL_ARRAY_BUFFER,buffer);
 //    /* 定义缓冲区的大小 */
-//    glBufferData(GL_ARRAY_BUFFER,4 * 2 * sizeof(float),positions,GL_STATIC_DRAW);
+//    glBufferData(GL_ARRAY_BUFFER,6 * 2 * sizeof(float),positions,GL_STATIC_DRAW);
 //    /* 开启顶点属性 */
 //    glEnableVertexAttribArray(0);
 //
 //    /* 为 Atrtribute 变量制定VBO中的数据。 */
-//    // index: 顶点参数的索引，位置0，纹理坐标1，法线2，顶点属性的位置，在顶点着色器中使用 layout(location = 0) 等来指定。
+//    // index: 顶点参数的索引，位置0，纹理坐标1，法线2
 //    // size, Attribute 变量数据是由几个元素组成的， x,y,z,w ; 最多四个。
 //    // type, Attribute 变量数据 的数据类型
 //    // normalized, 是否归一化， 编程1.0以内的数，这样做的目的是减少向gpu传递数据的带宽。
 //    // stride,一个顶点的内存大小，等于sizeof(float)*参数的数量，参数的数量即数据的数量
 //    // pointer,顶点参数的内存地址，例如一个三维顶点(float) ，位置的pointer就是0，纹理坐标的pointer就是12 = 3*sizeof(float),法线的pointer为 20 = 3*sizeof(float) + 2*sizeof(float)
-//    //这行代码实际会将顶点数组和指定的顶点缓冲区链接？ glVertexAttribPointer 函数调用的作用是将一个顶点属性指针与一个顶点缓冲对象（Vertex Buffer Object, VBO）关联起来
 //    glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,sizeof(float)*2,0);
 //
 //    //索引缓冲区的设置
@@ -196,23 +152,7 @@ static unsigned int CreateShader(const std::string& vertexShader, const std::str
 //    //读取着色器源码
 //    ShaderProgramSource shaderProgramSource = ParseShader("../res/shaders/Basic.shader");
 //    unsigned int shader = CreateShader(shaderProgramSource.vertex_source,shaderProgramSource.fragment_source);
-//    //根据一个已经绑定好的着色器id,使用这个shader作为当前的渲染程序
 //    glUseProgram(shader);
-//
-//    //将代码从着色器移到 c++中
-//    //1.获取变量的位置
-//    int location = glGetUniformLocation(shader,"u_Color");
-//    ASSERT( location!= -1);
-//
-//    // 解绑
-//    glUseProgram(0);
-//    glBindVertexArray(0);
-//    glBindBuffer(GL_ARRAY_BUFFER,0);
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
-//
-//
-//    float r= 0.5f;
-//    float increment = 0.05f;
 //
 //    /* Loop until the user closes the window */
 //    while (!glfwWindowShouldClose(window))
@@ -220,42 +160,17 @@ static unsigned int CreateShader(const std::string& vertexShader, const std::str
 //        /* Render here */
 //        glClear(GL_COLOR_BUFFER_BIT);
 //
-//        // 使用glUseProgramm 绑定着色器
-//        glUseProgram(shader);
-//        //2.根据前面得到的位置整数
-//        glUniform4f(location,r, 0.3f, 0.8f, 1.0f);
-//
-//        // 绑定顶点缓冲区
-////        glBindBuffer(GL_ARRAY_BUFFER,buffer);
-//
-//        //设置顶点缓冲区的布局
-////        glEnableVertexAttribArray(0);
-////        glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,sizeof(float)*2,0);
-//
-//        //在此绑定顶点数组,发现只绑定顶点数组对象和和索引缓冲区，之前的代码注掉，程序依旧可以运行
-//        glBindVertexArray(vao);
-//        //最后绑定到索引缓冲区
-//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,ibo);
-//
-//        //调用 drawcall 方法绘制
 //        /* 没有索引缓冲区时可以使用这个方法 */
-//        //glDrawArrays(GL_TRIANGLES,0,6);
+////         glDrawArrays(GL_TRIANGLES,0,6);
 //
 //        /* 有索引缓冲区时可以使用这个方法 */
-//        GlCall(glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT, nullptr));
-//
+//         glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT, nullptr);
 //
 //        /* Swap front and back buffers */
 //        glfwSwapBuffers(window);
 //
 //        /* Poll for and process events */
 //        glfwPollEvents();
-//        if(r>1.0f){
-//            increment = -0.05f;
-//        }else if(r < 0.0f){
-//            increment = 0.05f;
-//        }
-//        r+=increment;
 //    }
 //    glDeleteProgram(shader);
 //    glfwTerminate();
