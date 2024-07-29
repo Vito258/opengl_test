@@ -46,7 +46,8 @@ public:
 
     template<typename R>
     void TPush(identity<R>, unsigned int count) {
-        static_assert(false, "Unsupported type");
+//        static_assert(false, "Unsupported type");
+        static_assert(sizeof(R) == 0, "Unsupported type");
     }
 
     void TPush(identity<float>, unsigned int count) {

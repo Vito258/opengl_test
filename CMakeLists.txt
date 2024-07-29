@@ -32,7 +32,9 @@ add_executable(openGl_test src/main.cpp
         src/VertexArray.cpp
         src/VertexArray.h
         src/VertexBufferLayout.cpp
-        src/VertexBufferLayout.h)
+        src/VertexBufferLayout.h
+        src/Shader.cpp
+        src/Shader.h)
 
 # 链接 GLFW库
 target_link_libraries(openGl_test
