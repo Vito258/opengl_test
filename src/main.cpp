@@ -10,6 +10,8 @@
 #include "VertexArray.h"
 #include "Shader.h"
 #include "Texture.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 int main() {
     GLFWwindow *window;
@@ -66,7 +68,8 @@ int main() {
                 2, 3, 0
         };
 
-        //启用混合，
+        //默认情况下opengl 会使用src 的颜色通道直接覆盖掉 dest的颜色通道
+        //启用混合
         GlCall(glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA));
         GlCall(glEnable(GL_BLEND));
         //显式创建一个顶点数组
@@ -85,6 +88,10 @@ int main() {
         //索引缓冲区的设置
         IndexBuffer ib(indices, 6);
 
+        // 创建投影矩阵，使用glm::ortho 这将会产生一个正交矩阵
+        // 通过指定四个位置设置了边界以及纵横比，这里是4：3
+        glm::mat4 proj = glm::ortho(-2.0f,2.0f,-1.5f,1.5f,-1.0f,1.0f);
+
         //读取着色器源码
         Shader shader("../res/shaders/Basic.shader");
         shader.Bind();
@@ -93,6 +100,8 @@ int main() {
         Texture texture("../res/textures/Texture.png");
         texture.Bind(2);
         shader.SetUniform1i("u_Texture",2);
+        // 设置
+        shader.SetUniformMat4f("u_MVP",proj);
 
         // 解绑
         va.UnBind();

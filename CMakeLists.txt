@@ -18,8 +18,11 @@ link_directories(${GLFW_LIB_DIR})
 # 添加 GLEW 库路径
 find_package(GLEW REQUIRED)
 
-# 添加 GLFW 和 GLEW 的头文件路径
-include_directories(${GLFW_INCLUDE_DIR} ${GLEW_INCLUDE_DIR})
+# 设置自定义vendor
+set(VENDOR_DIR "src/vendor")
+
+# 添加头文件路径
+include_directories(${GLFW_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${VENDOR_DIR})
 
 
 add_executable(openGl_test src/main.cpp

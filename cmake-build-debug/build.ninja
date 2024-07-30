@@ -53,7 +53,7 @@ build CMakeFiles/openGl_test.dir/src/main.cpp.obj: CXX_COMPILER__openGl_test_uns
   DEFINES = -DGLEW_STATIC
   DEP_FILE = CMakeFiles\openGl_test.dir\src\main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include -ID:/C++/project/opengl_test/src/vendor
   OBJECT_DIR = CMakeFiles\openGl_test.dir
   OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
 
@@ -61,7 +61,7 @@ build CMakeFiles/openGl_test.dir/src/Renderer.cpp.obj: CXX_COMPILER__openGl_test
   DEFINES = -DGLEW_STATIC
   DEP_FILE = CMakeFiles\openGl_test.dir\src\Renderer.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include -ID:/C++/project/opengl_test/src/vendor
   OBJECT_DIR = CMakeFiles\openGl_test.dir
   OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
 
@@ -69,7 +69,7 @@ build CMakeFiles/openGl_test.dir/src/VertexBuffer.cpp.obj: CXX_COMPILER__openGl_
   DEFINES = -DGLEW_STATIC
   DEP_FILE = CMakeFiles\openGl_test.dir\src\VertexBuffer.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include -ID:/C++/project/opengl_test/src/vendor
   OBJECT_DIR = CMakeFiles\openGl_test.dir
   OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
 
@@ -77,7 +77,7 @@ build CMakeFiles/openGl_test.dir/src/IndexBuffer.cpp.obj: CXX_COMPILER__openGl_t
   DEFINES = -DGLEW_STATIC
   DEP_FILE = CMakeFiles\openGl_test.dir\src\IndexBuffer.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include -ID:/C++/project/opengl_test/src/vendor
   OBJECT_DIR = CMakeFiles\openGl_test.dir
   OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
 
@@ -85,7 +85,7 @@ build CMakeFiles/openGl_test.dir/src/VertexArray.cpp.obj: CXX_COMPILER__openGl_t
   DEFINES = -DGLEW_STATIC
   DEP_FILE = CMakeFiles\openGl_test.dir\src\VertexArray.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include -ID:/C++/project/opengl_test/src/vendor
   OBJECT_DIR = CMakeFiles\openGl_test.dir
   OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
 
@@ -93,7 +93,7 @@ build CMakeFiles/openGl_test.dir/src/VertexBufferLayout.cpp.obj: CXX_COMPILER__o
   DEFINES = -DGLEW_STATIC
   DEP_FILE = CMakeFiles\openGl_test.dir\src\VertexBufferLayout.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include -ID:/C++/project/opengl_test/src/vendor
   OBJECT_DIR = CMakeFiles\openGl_test.dir
   OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
 
@@ -101,7 +101,7 @@ build CMakeFiles/openGl_test.dir/src/Shader.cpp.obj: CXX_COMPILER__openGl_test_u
   DEFINES = -DGLEW_STATIC
   DEP_FILE = CMakeFiles\openGl_test.dir\src\Shader.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include -ID:/C++/project/opengl_test/src/vendor
   OBJECT_DIR = CMakeFiles\openGl_test.dir
   OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
 
@@ -109,7 +109,7 @@ build CMakeFiles/openGl_test.dir/src/vendor/stb_image/stb_image.cpp.obj: CXX_COM
   DEFINES = -DGLEW_STATIC
   DEP_FILE = CMakeFiles\openGl_test.dir\src\vendor\stb_image\stb_image.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include -ID:/C++/project/opengl_test/src/vendor
   OBJECT_DIR = CMakeFiles\openGl_test.dir
   OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src\vendor\stb_image
 
@@ -117,7 +117,7 @@ build CMakeFiles/openGl_test.dir/src/Texture.cpp.obj: CXX_COMPILER__openGl_test_
   DEFINES = -DGLEW_STATIC
   DEP_FILE = CMakeFiles\openGl_test.dir\src\Texture.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include
+  INCLUDES = -ID:/C++/project/opengl_test/Dependencies/GLFW/include -ID:/C++/project/opengl_test/Dependencies/GLEW/include -ID:/C++/project/opengl_test/src/vendor
   OBJECT_DIR = CMakeFiles\openGl_test.dir
   OBJECT_FILE_DIR = CMakeFiles\openGl_test.dir\src
 
