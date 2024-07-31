@@ -34,7 +34,8 @@ int main() {
     //glfwWindowHint(GLFW_OPENGL_PROFILE,GLFW_OPENGL_COMPAT_PROFILE);
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    // window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(960, 540, "Hello World", NULL, NULL);
     if (!window) {
         glfwTerminate();
         return -1;
@@ -56,11 +57,19 @@ int main() {
     fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
     {
         //新增的為紋理坐標
+//        float positions[] = {
+//                -0.5f, -0.5f, 0.0f, 0.0f,    // 0
+//                0.5f, -0.5f, 1.0f, 0.0f,    // 1
+//                0.5f, 0.5f, 1.0f, 1.0f,     // 2
+//                -0.5f, 0.5f, 0.0f, 1.0f   //  3
+//        };
+
+        //将视窗分辨率改为960×540 之后
         float positions[] = {
-                -0.5f, -0.5f,0.0f,0.0f,    // 0
-                0.5f, -0.5f, 1.0f,0.0f,    // 1
-                0.5f, 0.5f,1.0f,1.0f,     // 2
-                -0.5f, 0.5f,0.0f,1.0f   //  3
+                100.0f, 100.0f, 0.0f, 0.0f,    // 0
+                200.0f, 100.0f, 1.0f, 0.0f,    // 1
+                200.0f, 200.0f, 1.0f, 1.0f,     // 2
+                100.0f, 200.0f, 0.0f, 1.0f   //  3
         };
 
         unsigned int indices[] = {
@@ -70,7 +79,7 @@ int main() {
 
         //默认情况下opengl 会使用src 的颜色通道直接覆盖掉 dest的颜色通道
         //启用混合
-        GlCall(glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA));
+        GlCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
         GlCall(glEnable(GL_BLEND));
         //显式创建一个顶点数组
         VertexArray va;
@@ -90,7 +99,14 @@ int main() {
 
         // 创建投影矩阵，使用glm::ortho 这将会产生一个正交矩阵
         // 通过指定四个位置设置了边界以及纵横比，这里是4：3
-        glm::mat4 proj = glm::ortho(-2.0f,2.0f,-1.5f,1.5f,-1.0f,1.0f);
+        // 归根到底，这个正交投影矩阵和上面的顶点位置相乘，将他们转换到-1到1的空间
+        // 以x 的边界举例，-2.0f和2.0f之间的中点是0，原点的x=0
+        // 假设上面的第一个顶点（-0.5f, -0.5f,0.0f,0.0f,）第一个值-0.5f，在-2.0f和0之间（最左边界）占1/4 ,所以当他与矩阵相乘并转换到-1到1的空间后，就由-0.5f变成了-0.2f
+        // 这发生在我们的vertex 的shader里面
+        // glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+
+        // 将视窗分辨率改为960×540 之后
+        glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
 
         //读取着色器源码
         Shader shader("../res/shaders/Basic.shader");
@@ -99,9 +115,9 @@ int main() {
 
         Texture texture("../res/textures/Texture.png");
         texture.Bind(2);
-        shader.SetUniform1i("u_Texture",2);
+        shader.SetUniform1i("u_Texture", 2);
         // 设置
-        shader.SetUniformMat4f("u_MVP",proj);
+        shader.SetUniformMat4f("u_MVP", proj);
 
         // 解绑
         va.UnBind();
@@ -120,10 +136,10 @@ int main() {
             renderer.Clear();
 
             shader.Bind();
-            shader.SetUniform4f("u_Color", r, 0.3f, 0.8f, 1.0f);
+            // shader.SetUniform4f("u_Color", r, 0.3f, 0.8f, 1.0f);
 
             // 渲染器绘制
-            renderer.Draw(va,ib,shader);
+            renderer.Draw(va, ib, shader);
 
             /* Swap front and back buffers */
             GlCall(glfwSwapBuffers(window));
