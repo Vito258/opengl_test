@@ -108,6 +108,14 @@ int main() {
         // 将视窗分辨率改为960×540 之后
         glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
 
+        // 创建视图矩阵，将相机向右移动100.0f，既将对象向左移动100.0f
+        glm::mat4 view = glm::translate(glm::mat4(1.0f),glm::vec3 (-100,0,0));
+
+        // 创建模型矩阵，将对象向右移动200，向上移动200
+        glm::mat4 model = glm::translate(glm::mat4(1.0f),glm::vec3 (200,200,0));
+        // 这里的mvp就是模型视图投影矩阵，opengl中的矩阵乘法是从右到左，所以是模型*视图*投影
+        glm::mat4 mvp = proj * view * model;
+
         //读取着色器源码
         Shader shader("../res/shaders/Basic.shader");
         shader.Bind();
@@ -117,7 +125,7 @@ int main() {
         texture.Bind(2);
         shader.SetUniform1i("u_Texture", 2);
         // 设置
-        shader.SetUniformMat4f("u_MVP", proj);
+        shader.SetUniformMat4f("u_MVP", mvp);
 
         // 解绑
         va.UnBind();
