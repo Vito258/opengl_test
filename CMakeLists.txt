@@ -31,10 +31,19 @@ set(IMGUI_SOURCES
         ${IMGUI_DIR}/imgui_tables.cpp
         ${IMGUI_DIR}/imgui_impl_opengl3.cpp
         ${IMGUI_DIR}/imgui_impl_glfw.cpp
+        tests/Test.h
+        tests/TestClearColor.cpp
+        tests/TestClearColor.h
+)
+set(SOURCE "src")
+
+# 添加自定义测试框架源文件
+set(TEST_SOURCES
+    tests/TestClearColor.cpp
 )
 
 # 添加头文件路径
-include_directories(${GLFW_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${VENDOR_DIR})
+include_directories(${GLFW_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${VENDOR_DIR} ${SOURCE})
 
 
 add_executable(openGl_test src/main.cpp
@@ -54,7 +63,8 @@ add_executable(openGl_test src/main.cpp
         src/vendor/stb_image/stb_image.cpp
         src/Texture.cpp
         src/Texture.h
-        ${IMGUI_SOURCES})
+        ${IMGUI_SOURCES}
+        ${TEST_SOURCES})
 
 # 链接 GLFW库
 target_link_libraries(openGl_test
