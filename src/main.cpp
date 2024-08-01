@@ -117,7 +117,6 @@ int main() {
         // 读取着色器源码
         Shader shader("../res/shaders/Basic.shader");
         shader.Bind();
-        shader.SetUniform4f("u_Color", 0.5f, 0.3f, 0.8f, 1.0f);
 
         Texture texture("../res/textures/Texture.png");
         texture.Bind(2);
@@ -202,12 +201,13 @@ int main() {
             /* Poll for and process events */
             glfwPollEvents();
         }
+
     }
     //在glfwTerminate()之前调用
     ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
     glfwDestroyWindow(window);
-
     glfwTerminate();
     return 0;
 }
