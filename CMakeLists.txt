@@ -21,6 +21,18 @@ find_package(GLEW REQUIRED)
 # 设置自定义vendor
 set(VENDOR_DIR "src/vendor")
 
+# 添加ImGui库的路径
+set(IMGUI_DIR "src/vendor/imgui")
+# 添加ImGui库的源文件
+set(IMGUI_SOURCES
+        ${IMGUI_DIR}/imgui.cpp
+        ${IMGUI_DIR}/imgui_draw.cpp
+        ${IMGUI_DIR}/imgui_widgets.cpp
+        ${IMGUI_DIR}/imgui_tables.cpp
+        ${IMGUI_DIR}/imgui_impl_opengl3.cpp
+        ${IMGUI_DIR}/imgui_impl_glfw.cpp
+)
+
 # 添加头文件路径
 include_directories(${GLFW_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${VENDOR_DIR})
 
@@ -41,7 +53,8 @@ add_executable(openGl_test src/main.cpp
         src/vendor/stb_image/stb_image.h
         src/vendor/stb_image/stb_image.cpp
         src/Texture.cpp
-        src/Texture.h)
+        src/Texture.h
+        ${IMGUI_SOURCES})
 
 # 链接 GLFW库
 target_link_libraries(openGl_test
