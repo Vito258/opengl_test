@@ -36,8 +36,9 @@ set(SOURCE "src")
 
 # 添加自定义测试框架源文件
 set(TEST_SOURCES
-    tests/TestClearColor.cpp
-    tests/Test.cpp
+        tests/TestClearColor.cpp
+        tests/Test.cpp
+        tests/TestTexture2D.cpp
 )
 
 # 添加头文件路径
