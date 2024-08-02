@@ -16,6 +16,7 @@
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 #include "../tests/TestClearColor.h"
+
 int main() {
     GLFWwindow *window;
 
@@ -83,21 +84,38 @@ int main() {
 #endif
         ImGui_ImplOpenGL3_Init(glsl_version);
 
-        test::TestClearColor clear_ColorTest;
+        test::Test* currentTest = nullptr;
+        test::TestMenu* pTestMenu = new test::TestMenu(currentTest);
+        currentTest = pTestMenu;
+
+        // 注册测试
+        pTestMenu->RegisterTest<test::TestClearColor>("clear color");
+
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window)) {
+            //测试完成后回到黑色
+            GlCall(glClearColor(0.0f,0.0f,0.0f,1.0f));
+
             /* Render here */
             renderer.Clear();
-
-            clear_ColorTest.OnUpdate(0.0f);
-            clear_ColorTest.OnRender();
 
             // 开启一个用于imgui 的新帧，在为这帧开始写任何imgui 代码之前需要有新的帧函数调用
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
 
-            clear_ColorTest.OnImguiRender();
+            if (currentTest) {
+                currentTest->OnUpdate(0.0f);
+                currentTest->OnRender();
+                ImGui::Begin("current test");
+                if (currentTest != pTestMenu && ImGui::Button("<=")) {
+                    delete currentTest;
+                    currentTest = pTestMenu;
+                }
+                currentTest->OnImguiRender();
+                ImGui::End();
+            }
+
 
             ImGui::Render();
             ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -108,6 +126,9 @@ int main() {
             /* Poll for and process events */
             glfwPollEvents();
         }
+        delete currentTest;
+        if(currentTest != pTestMenu)
+            delete pTestMenu;
 
     }
     //在glfwTerminate()之前调用

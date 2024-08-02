@@ -31,15 +31,13 @@ set(IMGUI_SOURCES
         ${IMGUI_DIR}/imgui_tables.cpp
         ${IMGUI_DIR}/imgui_impl_opengl3.cpp
         ${IMGUI_DIR}/imgui_impl_glfw.cpp
-        tests/Test.h
-        tests/TestClearColor.cpp
-        tests/TestClearColor.h
 )
 set(SOURCE "src")
 
 # 添加自定义测试框架源文件
 set(TEST_SOURCES
     tests/TestClearColor.cpp
+    tests/Test.cpp
 )
 
 # 添加头文件路径
