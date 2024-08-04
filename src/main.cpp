@@ -16,6 +16,7 @@
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 #include "../tests/TestClearColor.h"
+#include "../tests/TestTexture2D.h"
 
 int main() {
     GLFWwindow *window;
@@ -89,8 +90,8 @@ int main() {
         currentTest = pTestMenu;
 
         // 注册测试
-        pTestMenu->RegisterTest<test::TestClearColor>("clear color");
-
+        pTestMenu->RegisterTest<test::TestClearColor>("clear color test");
+        pTestMenu->RegisterTest<test::TestTexture2D>("texture test");
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window)) {
             //测试完成后回到黑色

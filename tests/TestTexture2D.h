@@ -4,7 +4,9 @@
 
 #ifndef OPENGL_TEST_TESTTEXTURE2D_H
 #define OPENGL_TEST_TESTTEXTURE2D_H
-#include <GL/gl.h>
+#include <GL/glew.h>
+#include "GLFW/glfw3.h"
+#include <memory>
 #include "Test.h"
 #include "imgui/imgui.h"
 #include "glm/vec3.hpp"
@@ -29,10 +31,12 @@ namespace test{
     private:
         glm::vec3 m_TranslationA;
         glm::vec3 m_TranslationB;
-        ImGuiIO &m_Io = ImGui::GetIO();
-        glm::mat4 m_Proj;
-        glm::mat4 m_View;
-        glm::mat4 m_Model;
+        std::unique_ptr<VertexArray> m_Vao;
+        std::unique_ptr<VertexBuffer> m_VertexBuffer;
+        std::unique_ptr<IndexBuffer> m_IndexBuffer;
+        std::unique_ptr<Shader> m_Shader;
+        std::unique_ptr<Texture> m_Texture;
+        glm::mat4 m_Proj,m_View,m_Model;
     };
 }
 
