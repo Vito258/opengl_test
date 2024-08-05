@@ -32,7 +32,9 @@ set(IMGUI_SOURCES
         ${IMGUI_DIR}/imgui_impl_opengl3.cpp
         ${IMGUI_DIR}/imgui_impl_glfw.cpp
 )
-set(SOURCE "src")
+
+# 设置src下 的头文件
+set(SOURCE_LIB_DIR "src")
 
 # 添加自定义测试框架源文件
 set(TEST_SOURCES
@@ -41,11 +43,8 @@ set(TEST_SOURCES
         tests/TestTexture2D.cpp
 )
 
-# 添加头文件路径
-include_directories(${GLFW_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${VENDOR_DIR} ${SOURCE})
-
-
-add_executable(openGl_test src/main.cpp
+# 添加源文件
+set(SOURCES
         src/Renderer.cpp
         src/Renderer.h
         src/VertexBuffer.cpp
@@ -62,6 +61,15 @@ add_executable(openGl_test src/main.cpp
         src/vendor/stb_image/stb_image.cpp
         src/Texture.cpp
         src/Texture.h
+)
+
+# 添加头文件路径
+include_directories(${GLFW_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${VENDOR_DIR} ${SOURCE_LIB_DIR})
+
+
+add_executable(openGl_test
+        src/main.cpp
+        ${SOURCES}
         ${IMGUI_SOURCES}
         ${TEST_SOURCES})
 
@@ -82,3 +90,24 @@ target_link_libraries(openGl_test
 
 
 
+
+add_executable(SandboxLayer
+        src/SandboxLayer.cpp
+        ${SOURCES}
+        ${IMGUI_SOURCES}
+        ${TEST_SOURCES}
+)
+# 链接 GLFW库
+target_link_libraries(SandboxLayer
+        PRIVATE
+        ${GLEW_STATIC_LIBRARIES}
+        opengl32
+        glu32
+        glfw3
+        kernel32
+        user32
+        gdi32
+        shell32
+        ole32
+        uuid
+)
