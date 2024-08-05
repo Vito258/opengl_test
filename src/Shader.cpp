@@ -110,10 +110,10 @@ bool Shader::CompileSharder() {
     return false;
 }
 
-int Shader::GetUniformLocation(const std::string &name) {
+GLint Shader::GetUniformLocation(const std::string &name) const{
     if(m_UniFormLocationCache.find(name) != m_UniFormLocationCache.end())
         return m_UniFormLocationCache[name];
-    GlCall(int location = glGetUniformLocation(m_RenderID, name.c_str()));
+    GlCall(GLint location = glGetUniformLocation(m_RenderID, name.c_str()));
     if(location == -1)
         std::cout<<"This uniform :"<<name<<"doesn't exist..."<<std::endl;
     m_UniFormLocationCache[name] = location;

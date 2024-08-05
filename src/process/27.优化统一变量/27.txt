@@ -1,0 +1,1 @@
+见Shader.cpp 的GetUniformLocation 方法

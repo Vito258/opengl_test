@@ -23,7 +23,7 @@ class Shader {
 private:
     std::string m_FilePath;
     unsigned int m_RenderID;
-    std::unordered_map<std::string,int> m_UniFormLocationCache;
+    mutable std::unordered_map<std::string,GLint> m_UniFormLocationCache;
 public:
     Shader(const std::string& filePath);
    ~Shader();
@@ -41,7 +41,7 @@ public:
     void SetUniformMat4f(const std::string& name, const glm::mat4& marix);
 private:
     bool CompileSharder();
-    int GetUniformLocation(const std::string& name);
+    GLint GetUniformLocation(const std::string& name) const;
 };
 
 
