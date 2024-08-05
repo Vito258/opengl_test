@@ -19,6 +19,22 @@
 #include "../tests/TestClearColor.h"
 #include "../tests/TestTexture2D.h"
 
+struct Vertex {
+    float Positions[2];
+    float Color[4];
+    float TexCoords[2];
+    float TexID;
+};
+
+static std::array<Vertex, 4> CreateQuad(float x, float y,float textureID)
+{
+    float size = 0.4f;
+    Vertex v0 = { {x, y}, {0.18f, 0.6f, 0.96f, 1.0f}, {0.0f,0.0f}, textureID};
+    Vertex v1 = { {x + size, y}, {0.18f, 0.6f, 0.96f, 1.0f}, {1.0f,0.0f}, textureID };;
+    Vertex v2 = { {x + size, y + size}, {0.18f, 0.6f, 0.96f, 1.0f}, {1.0f,1.0f}, textureID};;
+    Vertex v3 = { {x, y + size}, {0.18f, 0.6f, 0.96f, 1.0f}, {0.0f,1.0f}, textureID};;
+    return {v0,v1,v2,v3};
+}
 
 //渲染两个正方形
 //int main() {
@@ -59,18 +75,12 @@
 //    fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 //
 //    {
-//        float positions[] = {
-//                -0.2f, -0.2f, 0.18f, 0.6f, 0.96f, 1.0f,  0.0f,0.0f,0.0f,
-//                0.2f, -0.2f, 0.18f, 0.6f, 0.96f, 1.0f, 1.0f,0.0f,0.0f,
-//                0.2f, 0.2f, 0.18f, 0.6f, 0.96f, 1.0f, 1.0f,1.0f,0.0f,
-//                -0.2f, 0.2f, 0.18f, 0.6f, 0.96f, 1.0f, 0.0f,1.0f,0.0f,
+//        auto q1 = CreateQuad(-0.2f,-0.2f,0.0f);
+//        auto q2 = CreateQuad(0.4f,-0.2f,1.0f);
 //
-//                0.4f, -0.2f, 1.0f, 0.93f, 0.24f, 1.0f,0.0f,0.0f,1.0f,
-//                0.8f, -0.2f, 1.0f, 0.93f, 0.24f, 1.0f,1.0f,0.0f,1.0f,
-//                0.8f, 0.2f, 1.0f, 0.93f, 0.24f, 1.0f, 1.0f,1.0f,1.0f,
-//                0.4f, 0.2f, 1.0f, 0.93f, 0.24f, 1.0f,0.0f,1.0f,1.0f
-//        };
-//
+//        Vertex vertices[8];
+//        memcpy(vertices,q1.data(),q1.size()* sizeof (Vertex));
+//        memcpy(vertices + q1.size(),q2.data(),q2.size()* sizeof (Vertex));
 //        unsigned int indices[] = {
 //                0, 1, 2,
 //                2, 3, 0,
@@ -82,17 +92,13 @@
 //        VertexArray va;
 //
 //        //创建顶点缓冲区 会自动绑定
-//        VertexBuffer vb(positions, 8 * 9 * sizeof(float));
-//
+////        VertexBuffer vb(vetices, 8 * 9 * sizeof(float));
+//        GlCall(VertexBuffer vb(vertices, sizeof (vertices),0)) ;
 //        VertexBufferLayout layout;
-          //读取位置
-//        GlCall(layout.push<float>(2));
-          //读取颜色
-//        GlCall(layout.push<float>(4));
-          //读取纹理坐标
-//        GlCall(layout.push<float>(2));
-          //读取纹理Id
-//        GlCall(layout.push<float>(1));
+//        GlCall(layout.push<float>(sizeof(Vertex::Positions) / sizeof(Vertex::Positions[0])));
+//        GlCall(layout.push<float>(sizeof(Vertex::Color) / sizeof(Vertex::Color[0])));
+//        GlCall(layout.push<float>(sizeof(Vertex::TexCoords) / sizeof(Vertex::TexCoords[0])));
+//        GlCall(layout.push<float>(sizeof(Vertex::TexID) / sizeof(Vertex::TexID)));
 //        GlCall(va.AddBuffer(vb, layout));
 //
 //        //索引缓冲区的设置
@@ -103,7 +109,7 @@
 //        shader.Bind();
 //
 //        //设置纹理的数组
-//        int samplers[2] = {0,1};
+//        int samplers[2] = {0, 1};
 //        //创建纹理
 //        Texture textureOne("../res/textures/Texture.png");
 //        Texture textureTwo("../res/textures/Menma.png");
@@ -111,7 +117,7 @@
 //        textureOne.Bind(samplers[0]);
 //        textureTwo.Bind(samplers[1]);
 //
-//        shader.SetUniform1iv("u_Textures",2,samplers);
+//        shader.SetUniform1iv("u_Textures", 2, samplers);
 //        // 解绑
 //        va.UnBind();
 //        shader.UnBind();

@@ -9,10 +9,16 @@ private:
     unsigned int m_RendererId{};
 public:
     VertexBuffer(const void* data,unsigned int size);
+    VertexBuffer(const void* data,unsigned int size,unsigned int type);
     ~VertexBuffer();
 
     void Bind() const;
     void UnBind() const;
-
+private:
+    enum DrawType{
+        STATIC = 0,
+        DYNAMIC = 1,
+        SUB = 2
+    };
 };
 #endif // VERTEXBUFFER_H
