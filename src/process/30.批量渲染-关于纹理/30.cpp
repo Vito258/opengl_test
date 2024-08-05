@@ -60,15 +60,15 @@
 //
 //    {
 //        float positions[] = {
-//                -0.2f, -0.2f, 0.18f, 0.6f, 0.96f, 1.0f,  //0
-//                0.2f, -0.2f, 0.18f, 0.6f, 0.96f, 1.0f, //1
-//                0.2f, 0.2f, 0.18f, 0.6f, 0.96f, 1.0f, //2
-//                -0.2f, 0.2f, 0.18f, 0.6f, 0.96f, 1.0f, //3
+//                -0.2f, -0.2f, 0.18f, 0.6f, 0.96f, 1.0f,  0.0f,0.0f,0.0f,
+//                0.2f, -0.2f, 0.18f, 0.6f, 0.96f, 1.0f, 1.0f,0.0f,0.0f,
+//                0.2f, 0.2f, 0.18f, 0.6f, 0.96f, 1.0f, 1.0f,1.0f,0.0f,
+//                -0.2f, 0.2f, 0.18f, 0.6f, 0.96f, 1.0f, 0.0f,1.0f,0.0f,
 //
-//                0.4f, -0.2f, 1.0f, 0.93f, 0.24f, 1.0f,//4
-//                0.8f, -0.2f, 1.0f, 0.93f, 0.24f, 1.0f,//5
-//                0.8f, 0.2f, 1.0f, 0.93f, 0.24f, 1.0f, //6
-//                0.4f, 0.2f, 1.0f, 0.93f, 0.24f, 1.0f,//7
+//                0.4f, -0.2f, 1.0f, 0.93f, 0.24f, 1.0f,0.0f,0.0f,1.0f,
+//                0.8f, -0.2f, 1.0f, 0.93f, 0.24f, 1.0f,1.0f,0.0f,1.0f,
+//                0.8f, 0.2f, 1.0f, 0.93f, 0.24f, 1.0f, 1.0f,1.0f,1.0f,
+//                0.4f, 0.2f, 1.0f, 0.93f, 0.24f, 1.0f,0.0f,1.0f,1.0f
 //        };
 //
 //        unsigned int indices[] = {
@@ -82,13 +82,13 @@
 //        VertexArray va;
 //
 //        //创建顶点缓冲区 会自动绑定
-//        VertexBuffer vb(positions, 8 * 6 * sizeof(float));
+//        VertexBuffer vb(positions, 8 * 9 * sizeof(float));
 //
 //        VertexBufferLayout layout;
-//        //push location data
 //        GlCall(layout.push<float>(2));
-//        //push rgba data
 //        GlCall(layout.push<float>(4));
+//        GlCall(layout.push<float>(2));
+//        GlCall(layout.push<float>(1));
 //        GlCall(va.AddBuffer(vb, layout));
 //
 //        //索引缓冲区的设置
@@ -97,6 +97,17 @@
 //        //读取着色器源码
 //        Shader shader("../res/shaders/SandboxLayer.shader");
 //        shader.Bind();
+//
+//        //设置纹理的数组
+//        int samplers[2] = {0,1};
+//        //创建纹理
+//        Texture textureOne("../res/textures/Texture.png");
+//        Texture textureTwo("../res/textures/Menma.png");
+//
+//        textureOne.Bind(samplers[0]);
+//        textureTwo.Bind(samplers[1]);
+//
+//        shader.SetUniform1iv("u_Textures",2,samplers);
 //        // 解绑
 //        va.UnBind();
 //        shader.UnBind();
