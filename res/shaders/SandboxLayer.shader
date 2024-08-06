@@ -9,12 +9,14 @@
  out vec4 v_Color;
  out vec2 v_Texture;
  out float v_TexIndex;
+
+ uniform mat4 u_MVP;
  void main()
  {
      v_Color = a_Color;
      v_Texture = a_Texture;
      v_TexIndex = a_TexIndex;
-     gl_Position =  position;
+     gl_Position = position;
  };
 
  #shader fragment

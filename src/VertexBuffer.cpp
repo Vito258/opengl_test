@@ -40,3 +40,8 @@ VertexBuffer::VertexBuffer(const void *data, unsigned int size, unsigned int typ
         glBufferSubData(GL_ARRAY_BUFFER,0,size,data);
     }
 }
+
+void VertexBuffer::UpdateData(const void* data, unsigned int size) const {
+    glBindBuffer(GL_ARRAY_BUFFER, m_RendererId);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
+}

@@ -14,11 +14,13 @@ public:
 
     void Bind() const;
     void UnBind() const;
-private:
+
     enum DrawType{
         STATIC = 0,
         DYNAMIC = 1,
         SUB = 2
     };
+
+    void UpdateData(const void *data, unsigned int size) const;
 };
 #endif // VERTEXBUFFER_H
